@@ -14,7 +14,9 @@ $mysqli->set_charset('utf8');
 
 define('RPP', 10);   //rows per page
 $rpp = RPP;
-$page = 3;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$prev = $page == 1 ? 1 : $page -1;
+$next = $page +1;
 $start = ($page - 1) * RPP;
 
 $key = '';
@@ -40,8 +42,10 @@ if (isset($_GET['key']) && strlen($_GET['key']) > 0){
     Keyword: <input name="key" value="<?php echo $key;?>"/>
     <input type="submit" value="Search" />
 </form>
-<a href="">Prev</a> | <a href="">Next</a>
+<hr />
 
+<a href="?page=<?php echo $prev; ?>">Prev</a> | 
+<a href="?page=<?php echo $next; ?>" >Next</a>
 <table border="1">
     <tr>
         <td>#</td>
