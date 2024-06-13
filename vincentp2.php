@@ -10,6 +10,6 @@
     // echo $json;
     //json解碼
     $data = json_decode($json);
-    // var_dump測試
+    // var_dump測試1
     var_dump($data);
 ?>
