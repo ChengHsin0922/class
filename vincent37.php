@@ -10,10 +10,13 @@
     // echo $json;
     $data = json_decode($json);
     // var_dump($data);
-    
+    $sql = 'INSERT INTO gift (name,addr,picurl)  VALUES (?,?,?)';
+    $stmt = $mysqli->prepare($sql);
     foreach($data as $gift) {
-        $sql = "INSERT INTO gift (name,addr,picurl)" . "VALUES ('{$gift->Name}', '{$gift->SalePlace}', '{$gift->Column1}')";
-
-        $mysqli->query($sql);
+        // $sql = "INSERT INTO gift (name,addr,picurl)" . "VALUES ('{$gift->Name}', '{$gift->SalePlace}', '{$gift->Column1}')";
+        // $mysqli->query($sql);
+        $stmt->bind_param('sss',$gift->Name,$gift->SalePlace,$gift->Column1);    
+        $stmt->execute();
+        
     }
 ?>
