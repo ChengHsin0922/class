@@ -14,4 +14,5 @@
 
 
 ?>
-<!-- $stmt = $mysqli->prepare($sql);  prepare完之後 -->
+<!-- $stmt = $mysqli->prepare($sql);  prepare完之後會傳回$stmt -->
+<!--  -->
