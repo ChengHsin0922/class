@@ -18,7 +18,7 @@
     $stmt->bind_param('s', $account);
     $stmt->execute();
     $stmt->store_result();
-    if ($stmt->num_rows == 0) {
+    if ($stmt->num_rows == 0) {   //要比較的時候記得使用"=="，"="是賦予值
         $sql = 'INSERT INTO member (account,password,realname) VALUES(?,?,?)';
         // 避免隱碼攻擊，使用prepare回傳statment敘述句
         $stmt = $mysqli->prepare($sql);
