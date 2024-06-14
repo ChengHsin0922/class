@@ -1,6 +1,19 @@
+<style>
+    form {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    h3 {
+        display: grid;
+        justify-content: center;
+    }
+</style>
 <?php
     include('vincentapis.php');
-    session_cache_expire(1);  //逾時清除
+    
     session_start();
 
         if (isset($_GET['account'])) {
@@ -18,6 +31,13 @@
                 $stmt->bind_result($id,$account,$hashPasswd,$realname,$icon);
                 $stmt->fetch();
                 if (password_verify($passwd, $hashPasswd)) {
+                    $member = new Member();
+                    $member->setId($id);
+                    $member->setAccount($account);
+                    $member->setRealname($realname);
+                    $member->setIcon($icon);
+                    $_SESSION['member'] = $member;
+                    $_SESSION['now'] = time();
                     header('Location: main.php');
                 }
             }else {
@@ -41,11 +61,10 @@
     // $_SESSION['ary'] = $ary;
     //$ary[2] = 333;   //不會被帶到main頁面
 ?>
-<hr />
-Login<hr />
+<h3>會員登入</h3><hr />
 <!-- <a href="main.php">Main</a> -->
 <form action="">
-    Account: <input name="account"/><br />
-    Password: <input type="password" name="passwd" /> <br />
+    Account: <input name="account"/><hr />
+    Password: <input type="password" name="passwd" /> <hr />
     <input type="submit" value="Login" /> <br />
 </form>
