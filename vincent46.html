@@ -1,7 +1,7 @@
 <script>
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        //當xhttp
+        //當xhttp的狀態為4且狀況為200，div的內容為執行test1(vincent47.php)回傳的文本(當input onclick之後就會呼叫)
         if(xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById('here').innerHTML = xhttp.responseText;
         }

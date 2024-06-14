@@ -1,0 +1,44 @@
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    function test1() {
+        $('#id1').load('vincent49.php?max=' + $('#max').val());  //此行=document.getElementById('id1')，然後載入(load)vincent49檔案來執行，並將結果放到span(id=id1)裡面
+    }
+    //test2的彈性比test1大
+    function test2() {
+        //對後端發出請求，參數1=對誰發出請求，參數2執行以下function，function參數1=
+        $.get('vincent49.php?max=' + $('#max').val(),function(data,status){
+            if(status == 'success') {
+                $('#id1').html(data);  //此行為=innerHTML
+            }
+        });
+    }
+    //post沒有傳遞參數(觀念等同密碼不會出現在url)，因此以物件的方式改寫
+    function test3() {
+        $.post('vincent49.php',{
+            "max" : $('#max').val()
+        },function(data,status){
+            if(status == 'success') {
+                $('#id1').html(data);  
+            }
+        });
+    }
+    function test4() {
+        $.ajax({
+            url : 'vincent49.php',
+            method : 'post',
+            data : {
+                max : $('#max').val()
+            },
+            success : function (data){
+                $('#id1').html(data);
+            },
+        });
+    }
+</script>
+Lottery: <span id="id1"></span><br />
+Max: <input type="number" id="max"><br/ >
+<input type="button" onclick="test1()" value="Test1">
+<input type="button" onclick="test2()" value="Test2">
+<input type="button" onclick="test3()" value="Test3">
+<input type="button" onclick="test4()" value="Test4">
