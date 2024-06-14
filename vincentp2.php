@@ -1,5 +1,5 @@
 <?php
-    // 先連上資料庫，預設帳號:root，密碼:空白，匯入資料表:farm(先在資料庫上建立好並確定要匯入的欄位)
+    // 先連上資料庫，預設帳號:root，密碼:空白，匯入資料庫:iii(先在資料庫上建立好並確定要匯入的欄位)
     $mysqli = new mysqli('localhost','root','','iii');
     // 設定編碼形式
     $mysqli->set_charset('utf8');
@@ -11,5 +11,8 @@
     //json解碼
     $data = json_decode($json);
     // var_dump測試1
-    var_dump($data);
+    // var_dump($data);
+    //匯入資料表farm
+    $sql ='INSERT INTO farm (name, addr, tel, hosword) VALUES(?,?,?,?)';
+    //使用prepare預處理，會傳回
 ?>
