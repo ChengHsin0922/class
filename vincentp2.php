@@ -1,6 +1,6 @@
 <?php
     // 先連上資料庫，預設帳號:root，密碼:空白，匯入資料表:farm(先在資料庫上建立好並確定要匯入的欄位)
-    $mysqli = new mysqli('localhost','root','','farm');
+    $mysqli = new mysqli('localhost','root','','iii');
     // 設定編碼形式
     $mysqli->set_charset('utf8');
 
