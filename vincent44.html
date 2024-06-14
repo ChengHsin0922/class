@@ -1,5 +1,9 @@
 <meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
+    function checkAccount() {
+        $('#mesg').load('checkAccount.php?account=' + $('#account').val());
+    }
     function verifyForm() {
         
         return true;
@@ -8,9 +12,12 @@
 <h1>Register</h1>
 <hr />
 <!-- 使用post進行傳輸，避免密碼外洩 -->
-<form action="vincent46.php" method="post" onsubmit="return verifyForm();">
-    Account: <input name="account" onblur=""/><span id="mesg"></span><br />
+<form action="vincent45.php" method="post" onsubmit="return verifyForm();"
+    enctype="multipart/form-data">
+    Account: <input name="account" id="account" onblur="checkAccount()"/>
+                <span id="mesg"></span><br />
     Password: <input type="password" name="passwd" /> <br />
     Name: <input name="realname" /> <br />
+    Icon: <input type="file" name="icon" /> <br />
     <input type="submit" value="Register" /> <br />
 </form>

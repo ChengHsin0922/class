@@ -8,6 +8,10 @@
     // 使用password_hash加密，參數1($_POST['passwd'])為原始密碼，參數2(PASSWORD_DEFAULT)為轉成雜湊值
     $passwd = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
     $realname = $_POST['realname'];
+    $icon = $_FILES['icon'];
+    //file取得之後會放在tmp_name暫存區
+    //使用file_get_contents取得資料
+    $iconData = file_get_contents($icon['tmp_name']);
 
     $mysqli = new mysqli('localhost', 'root', '', 'iii');
     $mysqli->set_charset('utf8');
@@ -19,11 +23,11 @@
     $stmt->execute();
     $stmt->store_result();
     if ($stmt->num_rows == 0) {   //要比較的時候記得使用"=="，"="是賦予值
-        $sql = 'INSERT INTO member (account,password,realname) VALUES(?,?,?)';
+        $sql = 'INSERT INTO member (account,password,realname,icon) VALUES(?,?,?,?)';
         // 避免隱碼攻擊，使用prepare回傳statment敘述句
         $stmt = $mysqli->prepare($sql);
         // 使用bind綁定參數
-        $stmt->bind_param('sss', $account, $passwd, $realname);
+        $stmt->bind_param('ssss', $account, $passwd, $realname, $iconData);
         if ($stmt->execute()) {
             echo 'OK';
         }else {

@@ -73,5 +73,33 @@
         
         return $id;
     }
+
+    class Member {
+        private $id, $account, $realname, $icon;
+        public function getId() {
+            return $this->id;
+        }
+        public function getAccount() {
+            return $this->account;
+        }
+        public function getRealname() {
+            return $this->realname;
+        }
+        public function getIcon() {
+            return $this->icon;
+        }
+        public function setId($id) {
+            $this->id = $id;
+        }
+        public function setAccount($account) {
+            $this->account = $account;
+        }
+        public function setRealname($realname) {
+            $this->realname = $realname;
+        }
+        public function setIcon($icon) {
+            $this->icon = $icon;
+        }
+    }
 ?>
 
